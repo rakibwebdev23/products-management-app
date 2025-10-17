@@ -13,15 +13,12 @@ import storage from 'redux-persist/lib/storage'
 import authReducer from './features/auth/auth.slice'
 import { baseAPI } from './api/baseApi'
 
-
-
 const persistConfig = {
   key: 'auth',
   storage
 }
 
 const persistedReducer = persistReducer(persistConfig, authReducer)
-
 
 export const store = configureStore({
   reducer: {

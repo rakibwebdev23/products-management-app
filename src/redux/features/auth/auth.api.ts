@@ -1,6 +1,5 @@
 import { baseAPI } from "@/redux/api/baseApi";
 
-
 export const userAPI = baseAPI.injectEndpoints({
   endpoints: (build) => ({
     login: build.mutation({
@@ -9,31 +8,7 @@ export const userAPI = baseAPI.injectEndpoints({
         method: "POST",
         body: data,
       }),
-    }),
-    // register: build.mutation({
-    //   query: (data) => ({
-    //     url: "/auth/register",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    //   invalidatesTags: [],
-    // }),
-    // verifyOTP: build.mutation({
-    //   query: (data) => ({
-    //     url: "/auth/signup-verify-otp",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    //   invalidatesTags: [],
-    // }),
-
-    // forgotPassword: build.mutation({
-    //   query: (data) => ({
-    //     url: "/auth/forgot-password",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    // }),
+    })
   }),
 });
 
