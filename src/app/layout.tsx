@@ -3,6 +3,7 @@ import { persistor, store } from "@/redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
             {children}
           </PersistGate>
         </Provider>
+        <Toaster richColors  />
       </body>
     </html>
   );

@@ -1,18 +1,75 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Package } from "lucide-react";
+import { useLoginMutation } from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hook";
+import { addUserAndToken } from "@/redux/features/auth/auth.slice";
+import { toast } from "sonner";
+
+export default function HomePage() {
+  const dispatch = useAppDispatch()
+  const [loginUserFn, { isLoading }] = useLoginMutation();
+  const [email, setEmail] = useState("");
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    const id = toast.loading("Logging in...");
+    e.preventDefault();
+    try {
+      const result = await loginUserFn({ email }).unwrap();
+      if (result?.token) {
+        dispatch(addUserAndToken({ token: result.token }))
+        toast.success("Login successful", { id })
+      }
+    }
+    catch (error) {
+      toast.error((error as any)?.data?.message || "Login failed", { id })
+    }
+  };
+
   return (
-    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 rounded-lg shadow-lg text-white min-h-screen">
-      <h1 className="text-4xl font-extrabold text-center mb-6">MD Rakib Hasan Template</h1>
-      <p className="text-lg text-center mb-8">A modern web development stack with Next.js, Tailwind CSS, Shadcn, TypeScript, Redux, and custom CLI commands.</p>
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mb-4">
+            <Package className="w-8 h-8 text-primary-foreground" />
+          </div>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Product Manager</h1>
+          <p className="text-muted-foreground">Sign in to manage your products</p>
+        </div>
 
-      <div className="flex justify-center">
-        <iframe src="https://rakib-hasan-eb93b.web.app/" width="80%" height="700px" className="rounded-lg shadow-2xl border-4 border-indigo-600"></iframe>
-      </div>
+        {/* Form */}
+        <div className="bg-card rounded-2xl shadow-lg p-8 border border-border">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email address</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="h-12"
+              />
+            </div>
 
-      <div className="mt-8 text-center">
-        <p className="text-xl font-medium">Explore the template live and start building your next project!</p>
+            <Button type="submit" className={`${isLoading && "spin-in"} w-full`} >
+              Sign in
+            </Button>
+          </form>
+        </div>
+
+        <p className="text-center text-sm text-muted-foreground mt-6">
+          Enter your email to receive authentication
+        </p>
       </div>
     </div>
-
   );
 }
