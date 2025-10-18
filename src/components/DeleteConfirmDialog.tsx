@@ -17,7 +17,7 @@ interface DeleteConfirmDialogProps {
   onClose: () => void;
   onConfirm: () => void;
   productName: string;
-  isLoading?: boolean; // new prop to disable action while deleting
+  isLoading?: boolean;
 }
 
 const DeleteConfirmDialog = ({ open, onClose, onConfirm, productName, isLoading = false }: DeleteConfirmDialogProps) => {

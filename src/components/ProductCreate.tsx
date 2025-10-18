@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { useCreateProductsMutation } from "@/redux/features/products/products.api";
 import { useGetAllCategoriesQuery } from "@/redux/features/categories/categories.api";
-import { toast } from "sonner"; // Alternative toast library
+import { toast } from "sonner";
 import { Category } from "@/redux/features/products/products.type";
 
 const ProductCreate = () => {
