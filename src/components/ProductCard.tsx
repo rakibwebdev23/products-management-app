@@ -1,9 +1,7 @@
 'use client';
 
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Edit, Trash2, Eye } from 'lucide-react';
 import { IProduct } from '@/redux/features/products/products.type';
 import Link from 'next/link';
 
@@ -27,7 +25,7 @@ const ProductCard = ({ product, onDelete }: ProductCardProps) => {
                         <img
                             src={product.images[0]}
                             alt="Product image"
-                            className="w-full object-cover rounded-lg"
+                            className="w-full h-[200px] md:h-[300px] object-cover"
                         />
                     )}
 
@@ -51,33 +49,6 @@ const ProductCard = ({ product, onDelete }: ProductCardProps) => {
                         ${product.price.toLocaleString()}
                     </p>
                 </CardContent>
-
-                <CardFooter className="p-4 pt-0 flex gap-2">
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 gap-2"
-                    >
-                        <Eye className="w-4 h-4" />
-                        View
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 gap-2"
-                    >
-                        <Edit className="w-4 h-4" />
-                        Edit
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => onDelete(product.id)}
-                        className="gap-2 hover:bg-destructive hover:text-destructive-foreground hover:border-destructive"
-                    >
-                        <Trash2 className="w-4 h-4" />
-                    </Button>
-                </CardFooter>
             </Card>
         </Link>
     );

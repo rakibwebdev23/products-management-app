@@ -116,7 +116,7 @@ const ProductCreate = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button className="py-6 cursor-pointer">
           <Plus className="w-4 h-4 mr-2" />
           Add Product
         </Button>

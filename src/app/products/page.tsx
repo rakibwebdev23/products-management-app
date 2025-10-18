@@ -96,7 +96,7 @@ const Page = () => {
                     </div>
 
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                        <SelectTrigger className="w-full sm:w-[200px] h-12">
+                        <SelectTrigger className="w-full sm:w-[200px] py-6">
                             <SelectValue placeholder="All Categories" />
                         </SelectTrigger>
                         <SelectContent>
@@ -145,6 +145,7 @@ const Page = () => {
                         {!searchQuery && products.length >= itemsPerPage && (
                             <div className="flex justify-center gap-2 mt-12">
                                 <Button
+                                className="cursor-pointer"
                                     variant="outline"
                                     onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                                     disabled={currentPage === 1}
@@ -155,6 +156,7 @@ const Page = () => {
                                     Page {currentPage}
                                 </div>
                                 <Button
+                                className="cursor-pointer"
                                     variant="outline"
                                     onClick={() => setCurrentPage((p) => p + 1)}
                                     disabled={products.length < itemsPerPage}
