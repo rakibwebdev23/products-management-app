@@ -35,14 +35,14 @@ const userAPI = baseAPI.injectEndpoints({
         }),
 
         getSingleProduct: build.query<IProduct, string>({
-            query: (slugOrId) => ({
-                url: `/products/${slugOrId}`,
+            query: (id) => ({
+                url: `/products/${id}`,
                 method: "GET",
             }),
             providesTags: ["Products"],
         }),
 
-        updateProducts: build.mutation<IProduct, { id: string; data: Partial<IProduct> }>({
+        updateProducts: build.mutation({
             query: ({ id, data }) => ({
                 url: `/products/${id}`,
                 method: "PUT",

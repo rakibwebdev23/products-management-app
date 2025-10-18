@@ -42,7 +42,6 @@ const Page = () => {
 
     console.log(allProducts);
 
-
     const {
         data: searchResults = [],
         isLoading: isSearchLoading,
