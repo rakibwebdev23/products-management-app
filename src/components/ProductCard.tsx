@@ -10,12 +10,12 @@ interface ProductCardProps {
     onDelete: (id: string) => void;
 }
 
-const ProductCard = ({ product, onDelete }: ProductCardProps) => {
+const ProductCard = ({ product}: ProductCardProps) => {
 
 
     return (
         <Link
-            href={`products/${product?.slug}`}
+            href={`/products/${product?.slug}`}
         >
             <Card className="overflow-hidden hover:shadow-lg transition-all duration-200 group">
                 <div
