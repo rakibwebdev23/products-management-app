@@ -6,8 +6,8 @@ export type TUser = {
   isVerified: boolean;
   isActive: boolean;
   isDeleted: boolean;
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
+  createdAt: string;
+  updatedAt: string;
   deletedAt: string | null;
   profilePhoto: string;
 };

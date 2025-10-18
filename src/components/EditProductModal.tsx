@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useUpdateProductsMutation } from "@/redux/features/products/products.api";
+import { useRouter } from "next/navigation";
 
 interface EditProductModalProps {
     open: boolean;
@@ -23,6 +24,7 @@ interface EditProductModalProps {
 
 const EditProductModal = ({ open, onClose, product }: EditProductModalProps) => {
     const [updateProduct, { isLoading }] = useUpdateProductsMutation();
+    const router = useRouter()
 
     const [formData, setFormData] = useState<{ name?: string, description?: string }>({
         name: "",
@@ -49,6 +51,7 @@ const EditProductModal = ({ open, onClose, product }: EditProductModalProps) => 
             const result = await updateProduct({ id: product?.id, data: formData }).unwrap();
             if (result) {
                 toast.success("Product updated successfully!");
+                router.push('/products')
             } else {
                 toast.error("Update failed.");
             }

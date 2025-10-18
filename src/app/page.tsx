@@ -39,7 +39,6 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md">
-        {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mb-4">
             <Package className="w-8 h-8 text-primary-foreground" />
@@ -48,7 +47,6 @@ export default function HomePage() {
           <p className="text-muted-foreground">Sign in to manage your products</p>
         </div>
 
-        {/* Form */}
         <div className="bg-card rounded-2xl shadow-lg p-8 border border-border">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">

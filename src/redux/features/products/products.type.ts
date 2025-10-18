@@ -1,4 +1,3 @@
-// Individual category type
 export type Category = {
   createdAt: string;
   description: string | null;
@@ -8,7 +7,6 @@ export type Category = {
   updatedAt: string;
 }
 
-// Individual product type
 export type Product = {
   category: Category;
   createdAt: string;
@@ -21,10 +19,8 @@ export type Product = {
   updatedAt: string;
 }
 
-// Array of products type
 export type Products = Product[];
 
-// Interface syntax:
 export interface ICategory {
   createdAt: string;
   description: string | null;
