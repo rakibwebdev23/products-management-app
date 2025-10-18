@@ -10,25 +10,29 @@ import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useAppDispatch } from "@/redux/hook";
 import { addUserAndToken } from "@/redux/features/auth/auth.slice";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [loginUserFn, { isLoading }] = useLoginMutation();
   const [email, setEmail] = useState("");
 
-
   const handleSubmit = async (e: React.FormEvent) => {
-    const id = toast.loading("Logging in...");
     e.preventDefault();
+    const toastId = toast.loading("Logging in...");
+
     try {
       const result = await loginUserFn({ email }).unwrap();
       if (result?.token) {
-        dispatch(addUserAndToken({ token: result.token }))
-        toast.success("Login successful", { id })
+        dispatch(addUserAndToken({ token: result.token }));
+        toast.success("Login successful", { id: toastId });
+        router.push("/products");
+      } else {
+        toast.error("Login failed", { id: toastId });
       }
-    }
-    catch (error) {
-      toast.error((error as any)?.data?.message || "Login failed", { id })
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Login failed", { id: toastId });
     }
   };
 
@@ -60,8 +64,8 @@ export default function HomePage() {
               />
             </div>
 
-            <Button type="submit" className={`${isLoading && "spin-in"} w-full`} >
-              Sign in
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
         </div>
